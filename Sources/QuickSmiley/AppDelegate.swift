@@ -9,6 +9,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var snippetMenu: NSMenu?
     private var isMenuShowing = false
+    private var settingsWindowController: SettingsWindowController?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         _ = AccessibilityHelper.checkAndPrompt()
@@ -61,6 +62,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.shared.open(Constants.configFileURL)
     }
 
+    @objc func openSettings() {
+        if let controller = settingsWindowController {
+            controller.window?.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+            return
+        }
+
+        let controller = SettingsWindowController(config: configManager.config) { [weak self] in
+            self?.reloadConfig()
+        }
+        settingsWindowController = controller
+        controller.window?.delegate = self
+        controller.showWindow(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
     private func showSnippetMenu() {
         guard !isMenuShowing, snippetMenu != nil else { return }
         isMenuShowing = true
@@ -96,5 +113,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             target: self,
             action: #selector(menuItemSelected(_:))
         )
+    }
+}
+
+extension AppDelegate: NSWindowDelegate {
+    func windowWillClose(_ notification: Notification) {
+        settingsWindowController = nil
     }
 }
