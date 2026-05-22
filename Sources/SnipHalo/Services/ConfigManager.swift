@@ -18,7 +18,11 @@ class ConfigManager {
         }
 
         if !fm.fileExists(atPath: Constants.configFileURL.path) {
-            fm.createFile(atPath: Constants.configFileURL.path, contents: Constants.defaultConfigJSON.data(using: .utf8))
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.prettyPrinted, .withoutEscapingSlashes]
+            if let data = try? encoder.encode(Constants.defaultConfig) {
+                fm.createFile(atPath: Constants.configFileURL.path, contents: data)
+            }
             NSLog("SnipHalo: Created default config at \(Constants.configFileURL.path)")
         }
     }

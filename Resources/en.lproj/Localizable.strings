@@ -1,0 +1,72 @@
+/* Menu */
+"menu.settings" = "Settings...";
+"menu.editConfig" = "Edit Config JSON...";
+"menu.reloadConfig" = "Reload Config";
+"menu.quit" = "Quit SnipHalo";
+
+/* Edit Menu */
+"menu.undo" = "Undo";
+"menu.redo" = "Redo";
+"menu.cut" = "Cut";
+"menu.copy" = "Copy";
+"menu.paste" = "Paste";
+"menu.selectAll" = "Select All";
+
+/* Settings Window */
+"settings.title" = "SnipHalo Settings";
+
+/* Hotkey */
+"hotkey.label" = "Shortcut Key";
+"hotkey.recording" = "Press a key...";
+"hotkey.cancel" = "Cancel";
+
+/* Item Types */
+"type.text" = "Text";
+"type.date" = "Date/Time";
+"type.folder" = "Folder";
+"type.separator" = "Separator";
+
+/* New Item Defaults */
+"item.newText" = "New Text";
+"item.newDate" = "Date";
+"item.newFolder" = "New Folder";
+"item.untitled" = "(Untitled)";
+"item.separatorDisplay" = "── Separator ──";
+
+/* Sidebar */
+"sidebar.root" = "Root";
+
+/* Toolbar */
+"toolbar.addToFolder" = "Add to selected folder";
+"toolbar.duplicate" = "Duplicate selected item";
+
+/* Detail Panel */
+"detail.placeholder" = "Select an item";
+
+/* Button */
+"button.save" = "Save";
+
+/* Editor */
+"editor.type" = "Type";
+"editor.title" = "Title";
+"editor.textLabel" = "Text (multiline)";
+"editor.format" = "Format";
+"editor.preview" = "Preview:";
+"editor.formatExamples" = "Format Examples";
+"editor.formatEx1" = "yyyy-MM-dd → 2026-05-22";
+"editor.formatEx2" = "yyyy/MM/dd HH:mm → 2026/05/22 14:30";
+"editor.formatEx3" = "MMMM d, yyyy → May 22, 2026";
+"editor.formatEx4" = "HH:mm:ss → 14:30:00";
+"editor.formatEx5" = "E → Thu (Day of week)";
+
+/* Default Config */
+"default.greetings" = "Greetings";
+"default.greeting1.title" = "Good morning";
+"default.greeting1.text" = "Good morning.";
+"default.greeting2.title" = "Thank you";
+"default.greeting2.text" = "Thank you for your hard work.\nI appreciate your continued support.";
+"default.greeting3.title" = "Best regards";
+"default.greeting3.text" = "Best regards.";
+"default.dateTime" = "Date/Time";
+"default.symbols" = "Symbols & Emoticons";
+"default.email" = "Email Address";

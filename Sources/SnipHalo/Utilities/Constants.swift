@@ -1,5 +1,9 @@
 import Foundation
 
+func L(_ key: String) -> String {
+    NSLocalizedString(key, bundle: .main, comment: "")
+}
+
 enum Constants {
     static let appName = "SnipHalo"
     static let configFileName = "config.json"
@@ -13,46 +17,31 @@ enum Constants {
         appSupportDirectory.appendingPathComponent(configFileName)
     }
 
-    static let defaultConfigJSON = """
-    {
-      "version": 1,
-      "hotkey": { "key": "space", "modifiers": ["control"] },
-      "items": [
-        {
-          "type": "folder",
-          "title": "挨拶",
-          "items": [
-            { "type": "text", "title": "おはようございます", "text": "おはようございます。" },
-            { "type": "text", "title": "お疲れ様です", "text": "お疲れ様です。\\nいつもお世話になっております。" },
-            { "type": "text", "title": "よろしくお願いします", "text": "よろしくお願いいたします。" }
-          ]
-        },
-        {
-          "type": "folder",
-          "title": "日付・時刻",
-          "items": [
-            { "type": "date", "title": "yyyy-MM-dd", "format": "yyyy-MM-dd" },
-            { "type": "date", "title": "yyyy/MM/dd", "format": "yyyy/MM/dd" },
-            { "type": "date", "title": "yyyy年MM月dd日", "format": "yyyy年MM月dd日" },
-            { "type": "date", "title": "yyyy/MM/dd HH:mm", "format": "yyyy/MM/dd HH:mm" },
-            { "type": "date", "title": "HH:mm", "format": "HH:mm" }
-          ]
-        },
-        { "type": "separator" },
-        {
-          "type": "folder",
-          "title": "記号・顔文字",
-          "items": [
-            { "type": "text", "title": "(^^)", "text": "(^^)" },
-            { "type": "text", "title": "(T_T)", "text": "(T_T)" },
-            { "type": "text", "title": "(´・ω・`)", "text": "(´・ω・`)" },
-            { "type": "text", "title": "→", "text": "→" },
-            { "type": "text", "title": "※", "text": "※" }
-          ]
-        },
-        { "type": "separator" },
-        { "type": "text", "title": "メールアドレス", "text": "user@example.com" }
-      ]
-    }
-    """
+    static let defaultConfig = AppConfig(
+        version: 1,
+        hotkey: HotkeyConfig(key: "space", modifiers: ["control"]),
+        items: [
+            MenuItemConfig(type: .folder, title: "Greetings", items: [
+                MenuItemConfig(type: .text, title: "Good morning", text: "Good morning."),
+                MenuItemConfig(type: .text, title: "Thank you", text: "Thank you for your hard work.\nI appreciate your continued support."),
+                MenuItemConfig(type: .text, title: "Best regards", text: "Best regards."),
+            ]),
+            MenuItemConfig(type: .folder, title: "Date/Time", items: [
+                MenuItemConfig(type: .date, title: "yyyy-MM-dd", format: "yyyy-MM-dd"),
+                MenuItemConfig(type: .date, title: "yyyy/MM/dd", format: "yyyy/MM/dd"),
+                MenuItemConfig(type: .date, title: "yyyy/MM/dd HH:mm", format: "yyyy/MM/dd HH:mm"),
+                MenuItemConfig(type: .date, title: "HH:mm", format: "HH:mm"),
+            ]),
+            MenuItemConfig(type: .separator),
+            MenuItemConfig(type: .folder, title: "Symbols & Emoticons", items: [
+                MenuItemConfig(type: .text, title: "(^^)", text: "(^^)"),
+                MenuItemConfig(type: .text, title: "(T_T)", text: "(T_T)"),
+                MenuItemConfig(type: .text, title: ":)", text: ":)"),
+                MenuItemConfig(type: .text, title: "->", text: "→"),
+                MenuItemConfig(type: .text, title: "*", text: "※"),
+            ]),
+            MenuItemConfig(type: .separator),
+            MenuItemConfig(type: .text, title: "Email Address", text: "user@example.com"),
+        ]
+    )
 }

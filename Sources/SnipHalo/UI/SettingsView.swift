@@ -56,7 +56,7 @@ struct SettingsView: View {
     private var rootDropZone: some View {
         HStack(spacing: 4) {
             Rectangle().fill(Color.secondary.opacity(0.3)).frame(height: 1)
-            Text("ルート")
+            Text(L("sidebar.root"))
                 .font(.caption2)
                 .foregroundColor(.secondary)
             Rectangle().fill(Color.secondary.opacity(0.3)).frame(height: 1)
@@ -78,10 +78,10 @@ struct SettingsView: View {
     private var sidebarToolbar: some View {
         HStack(spacing: 4) {
             Menu {
-                Button("テキスト") { viewModel.addItem(type: .text) }
-                Button("日付・時刻") { viewModel.addItem(type: .date) }
-                Button("フォルダ") { viewModel.addItem(type: .folder) }
-                Button("区切り線") { viewModel.addItem(type: .separator) }
+                Button(L("type.text")) { viewModel.addItem(type: .text) }
+                Button(L("type.date")) { viewModel.addItem(type: .date) }
+                Button(L("type.folder")) { viewModel.addItem(type: .folder) }
+                Button(L("type.separator")) { viewModel.addItem(type: .separator) }
             } label: {
                 Image(systemName: "plus")
             }
@@ -90,23 +90,23 @@ struct SettingsView: View {
 
             if viewModel.selectedItem?.type == .folder {
                 Menu {
-                    Button("テキスト") { viewModel.addItemToSelectedFolder(type: .text) }
-                    Button("日付・時刻") { viewModel.addItemToSelectedFolder(type: .date) }
-                    Button("フォルダ") { viewModel.addItemToSelectedFolder(type: .folder) }
-                    Button("区切り線") { viewModel.addItemToSelectedFolder(type: .separator) }
+                    Button(L("type.text")) { viewModel.addItemToSelectedFolder(type: .text) }
+                    Button(L("type.date")) { viewModel.addItemToSelectedFolder(type: .date) }
+                    Button(L("type.folder")) { viewModel.addItemToSelectedFolder(type: .folder) }
+                    Button(L("type.separator")) { viewModel.addItemToSelectedFolder(type: .separator) }
                 } label: {
                     Image(systemName: "plus.rectangle.on.folder")
                 }
                 .menuStyle(.borderlessButton)
                 .frame(width: 28)
-                .help("選択中のフォルダ内に追加")
+                .help(L("toolbar.addToFolder"))
             }
 
             Button(action: viewModel.duplicateSelected) {
                 Image(systemName: "doc.on.doc")
             }
             .disabled(viewModel.selectedItemId == nil)
-            .help("選択中の項目を複製")
+            .help(L("toolbar.duplicate"))
 
             Button(action: viewModel.deleteSelected) {
                 Image(systemName: "minus")
@@ -242,8 +242,8 @@ struct SettingsView: View {
 
     private func displayTitle(for item: MenuItemConfig) -> String {
         switch item.type {
-        case .separator: return "── 区切り線 ──"
-        default: return item.title ?? "(無題)"
+        case .separator: return L("item.separatorDisplay")
+        default: return item.title ?? L("item.untitled")
         }
     }
 
@@ -262,7 +262,7 @@ struct SettingsView: View {
             } else {
                 VStack {
                     Spacer()
-                    Text("項目を選択してください")
+                    Text(L("detail.placeholder"))
                         .foregroundColor(.secondary)
                     Spacer()
                 }
@@ -276,7 +276,7 @@ struct SettingsView: View {
 
                 Spacer()
 
-                Button("保存") {
+                Button(L("button.save")) {
                     if let updated = editingItem {
                         viewModel.updateSelectedItem(updated)
                     }
@@ -305,16 +305,16 @@ struct MenuItemEditorView: View {
 
     var body: some View {
         Form {
-            Picker("種類", selection: $item.type) {
-                Text("テキスト").tag(MenuItemType.text)
-                Text("日付・時刻").tag(MenuItemType.date)
-                Text("フォルダ").tag(MenuItemType.folder)
-                Text("区切り線").tag(MenuItemType.separator)
+            Picker(L("editor.type"), selection: $item.type) {
+                Text(L("type.text")).tag(MenuItemType.text)
+                Text(L("type.date")).tag(MenuItemType.date)
+                Text(L("type.folder")).tag(MenuItemType.folder)
+                Text(L("type.separator")).tag(MenuItemType.separator)
             }
             .onChange(of: item.type) { _ in onChange() }
 
             if item.type != .separator {
-                TextField("タイトル", text: Binding(
+                TextField(L("editor.title"), text: Binding(
                     get: { item.title ?? "" },
                     set: { item.title = $0.isEmpty ? nil : $0 }
                 ))
@@ -323,7 +323,7 @@ struct MenuItemEditorView: View {
 
             if item.type == .text {
                 VStack(alignment: .leading) {
-                    Text("テキスト（改行可）")
+                    Text(L("editor.textLabel"))
                         .font(.caption)
                         .foregroundColor(.secondary)
                     TextEditor(text: Binding(
@@ -338,7 +338,7 @@ struct MenuItemEditorView: View {
             }
 
             if item.type == .date {
-                TextField("フォーマット", text: Binding(
+                TextField(L("editor.format"), text: Binding(
                     get: { item.format ?? "" },
                     set: { item.format = $0.isEmpty ? nil : $0 }
                 ))
@@ -348,7 +348,7 @@ struct MenuItemEditorView: View {
                     let formatter = DateFormatter()
                     let _ = { formatter.dateFormat = fmt; formatter.locale = Locale(identifier: "ja_JP") }()
                     HStack {
-                        Text("プレビュー:")
+                        Text(L("editor.preview"))
                             .foregroundColor(.secondary)
                         Text(formatter.string(from: Date()))
                             .fontWeight(.medium)
@@ -356,15 +356,15 @@ struct MenuItemEditorView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("フォーマット例")
+                    Text(L("editor.formatExamples"))
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Group {
-                        Text("yyyy-MM-dd → 2026-05-22")
-                        Text("yyyy/MM/dd HH:mm → 2026/05/22 14:30")
-                        Text("yyyy年MM月dd日 → 2026年05月22日")
-                        Text("HH:mm:ss → 14:30:00")
-                        Text("E → 木 (曜日)")
+                        Text(L("editor.formatEx1"))
+                        Text(L("editor.formatEx2"))
+                        Text(L("editor.formatEx3"))
+                        Text(L("editor.formatEx4"))
+                        Text(L("editor.formatEx5"))
                     }
                     .font(.caption)
                     .foregroundColor(.secondary)

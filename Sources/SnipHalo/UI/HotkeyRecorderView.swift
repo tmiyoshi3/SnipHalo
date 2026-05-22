@@ -8,10 +8,10 @@ struct HotkeyRecorderView: View {
 
     var body: some View {
         HStack {
-            Text("ショートカットキー")
+            Text(L("hotkey.label"))
 
             Button(action: toggleRecording) {
-                Text(isRecording ? "キーを押してください..." : hotkey.displayString)
+                Text(isRecording ? L("hotkey.recording") : hotkey.displayString)
                     .frame(minWidth: 160)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 8)
@@ -20,7 +20,7 @@ struct HotkeyRecorderView: View {
             .cornerRadius(6)
 
             if isRecording {
-                Button("キャンセル") {
+                Button(L("hotkey.cancel")) {
                     stopRecording()
                 }
             }

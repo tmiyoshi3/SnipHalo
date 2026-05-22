@@ -14,6 +14,8 @@ mkdir -p "$APP_BUNDLE/Contents/Resources"
 cp "$BUILD_DIR/$APP_NAME" "$APP_BUNDLE/Contents/MacOS/"
 cp Resources/Info.plist "$APP_BUNDLE/Contents/"
 cp Resources/AppIcon.icns "$APP_BUNDLE/Contents/Resources/"
+cp -R Resources/en.lproj "$APP_BUNDLE/Contents/Resources/"
+cp -R Resources/ja.lproj "$APP_BUNDLE/Contents/Resources/"
 cp Resources/StatusBarIconTemplate.png "$APP_BUNDLE/Contents/Resources/"
 cp Resources/StatusBarIconTemplate@2x.png "$APP_BUNDLE/Contents/Resources/"
 

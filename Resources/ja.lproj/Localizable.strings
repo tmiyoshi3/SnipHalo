@@ -1,0 +1,72 @@
+/* Menu */
+"menu.settings" = "設定...";
+"menu.editConfig" = "Config JSONを編集...";
+"menu.reloadConfig" = "設定を再読み込み";
+"menu.quit" = "SnipHaloを終了";
+
+/* Edit Menu */
+"menu.undo" = "取り消す";
+"menu.redo" = "やり直す";
+"menu.cut" = "カット";
+"menu.copy" = "コピー";
+"menu.paste" = "ペースト";
+"menu.selectAll" = "すべてを選択";
+
+/* Settings Window */
+"settings.title" = "SnipHalo 設定";
+
+/* Hotkey */
+"hotkey.label" = "ショートカットキー";
+"hotkey.recording" = "キーを押してください...";
+"hotkey.cancel" = "キャンセル";
+
+/* Item Types */
+"type.text" = "テキスト";
+"type.date" = "日付・時刻";
+"type.folder" = "フォルダ";
+"type.separator" = "区切り線";
+
+/* New Item Defaults */
+"item.newText" = "新しいテキスト";
+"item.newDate" = "日付";
+"item.newFolder" = "新しいフォルダ";
+"item.untitled" = "(無題)";
+"item.separatorDisplay" = "── 区切り線 ──";
+
+/* Sidebar */
+"sidebar.root" = "ルート";
+
+/* Toolbar */
+"toolbar.addToFolder" = "選択中のフォルダ内に追加";
+"toolbar.duplicate" = "選択中の項目を複製";
+
+/* Detail Panel */
+"detail.placeholder" = "項目を選択してください";
+
+/* Button */
+"button.save" = "保存";
+
+/* Editor */
+"editor.type" = "種類";
+"editor.title" = "タイトル";
+"editor.textLabel" = "テキスト（改行可）";
+"editor.format" = "フォーマット";
+"editor.preview" = "プレビュー:";
+"editor.formatExamples" = "フォーマット例";
+"editor.formatEx1" = "yyyy-MM-dd → 2026-05-22";
+"editor.formatEx2" = "yyyy/MM/dd HH:mm → 2026/05/22 14:30";
+"editor.formatEx3" = "yyyy年MM月dd日 → 2026年05月22日";
+"editor.formatEx4" = "HH:mm:ss → 14:30:00";
+"editor.formatEx5" = "E → 木 (曜日)";
+
+/* Default Config */
+"default.greetings" = "挨拶";
+"default.greeting1.title" = "おはようございます";
+"default.greeting1.text" = "おはようございます。";
+"default.greeting2.title" = "お疲れ様です";
+"default.greeting2.text" = "お疲れ様です。\nいつもお世話になっております。";
+"default.greeting3.title" = "よろしくお願いします";
+"default.greeting3.text" = "よろしくお願いいたします。";
+"default.dateTime" = "日付・時刻";
+"default.symbols" = "記号・顔文字";
+"default.email" = "メールアドレス";

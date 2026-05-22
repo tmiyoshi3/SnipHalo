@@ -27,11 +27,11 @@ class SettingsViewModel: ObservableObject {
         let newItem: MenuItemConfig
         switch type {
         case .text:
-            newItem = MenuItemConfig(type: .text, title: "新しいテキスト", text: "")
+            newItem = MenuItemConfig(type: .text, title: L("item.newText"), text: "")
         case .date:
-            newItem = MenuItemConfig(type: .date, title: "日付", format: "yyyy-MM-dd")
+            newItem = MenuItemConfig(type: .date, title: L("item.newDate"), format: "yyyy-MM-dd")
         case .folder:
-            newItem = MenuItemConfig(type: .folder, title: "新しいフォルダ", items: [])
+            newItem = MenuItemConfig(type: .folder, title: L("item.newFolder"), items: [])
         case .separator:
             newItem = MenuItemConfig(type: .separator)
         }
@@ -56,11 +56,11 @@ class SettingsViewModel: ObservableObject {
         let newItem: MenuItemConfig
         switch type {
         case .text:
-            newItem = MenuItemConfig(type: .text, title: "新しいテキスト", text: "")
+            newItem = MenuItemConfig(type: .text, title: L("item.newText"), text: "")
         case .date:
-            newItem = MenuItemConfig(type: .date, title: "日付", format: "yyyy-MM-dd")
+            newItem = MenuItemConfig(type: .date, title: L("item.newDate"), format: "yyyy-MM-dd")
         case .folder:
-            newItem = MenuItemConfig(type: .folder, title: "新しいフォルダ", items: [])
+            newItem = MenuItemConfig(type: .folder, title: L("item.newFolder"), items: [])
         case .separator:
             newItem = MenuItemConfig(type: .separator)
         }

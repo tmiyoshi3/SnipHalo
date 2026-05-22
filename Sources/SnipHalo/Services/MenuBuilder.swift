@@ -14,7 +14,7 @@ class MenuBuilder {
                 menu.addItem(.separator())
 
             case .folder:
-                let menuItem = NSMenuItem(title: item.title ?? "Folder", action: nil, keyEquivalent: "")
+                let menuItem = NSMenuItem(title: item.title ?? L("type.folder"), action: nil, keyEquivalent: "")
                 let submenu = NSMenu(title: item.title ?? "")
                 addItems(item.items ?? [], to: submenu, target: target, action: action)
                 menuItem.submenu = submenu

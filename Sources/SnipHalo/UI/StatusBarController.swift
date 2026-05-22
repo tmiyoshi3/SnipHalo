@@ -24,12 +24,12 @@ class StatusBarController {
         }
 
         statusMenu = NSMenu()
-        statusMenu!.addItem(withTitle: "設定...", action: #selector(AppDelegate.openSettings), keyEquivalent: ",")
+        statusMenu!.addItem(withTitle: L("menu.settings"), action: #selector(AppDelegate.openSettings), keyEquivalent: ",")
         statusMenu!.addItem(.separator())
-        statusMenu!.addItem(withTitle: "Edit Config JSON...", action: #selector(AppDelegate.openConfigFile), keyEquivalent: "e")
-        statusMenu!.addItem(withTitle: "Reload Config", action: #selector(AppDelegate.reloadConfig), keyEquivalent: "r")
+        statusMenu!.addItem(withTitle: L("menu.editConfig"), action: #selector(AppDelegate.openConfigFile), keyEquivalent: "e")
+        statusMenu!.addItem(withTitle: L("menu.reloadConfig"), action: #selector(AppDelegate.reloadConfig), keyEquivalent: "r")
         statusMenu!.addItem(.separator())
-        statusMenu!.addItem(withTitle: "Quit SnipHalo", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        statusMenu!.addItem(withTitle: L("menu.quit"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
     }
 
     @objc private func statusItemClicked(_ sender: NSStatusBarButton) {

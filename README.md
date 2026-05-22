@@ -1,23 +1,24 @@
 # SnipHalo
 
-macOS メニューバー常駐のスニペットマネージャー。カスタマイズ可能なホットキーでスニペットメニューを呼び出し、定型文や日付をすばやく貼り付けできます。
+A macOS menu bar snippet manager. Quickly paste frequently used text and dates via a customizable hotkey.
 
-## 特徴
+## Features
 
-- **ホットキーで即呼び出し** — デフォルトは `Ctrl+Space`（設定UIで変更可能）
-- **テキストスニペット** — 定型文・署名・メールアドレスなどをワンクリックで貼り付け
-- **日付・時刻** — `yyyy-MM-dd` などのフォーマットで現在日時を自動挿入
-- **フォルダ整理** — スニペットを階層的に整理（サブメニュー表示）
-- **設定UI** — ドラッグ&ドロップで並べ替え、フォルダ間移動、項目の複製に対応
-- **クリップボード保持** — 貼り付け後に元のクリップボード内容を復元
+![](screenshot.png)
+- **Hotkey triggered** — Default `Ctrl+Space` (customizable in settings)
+- **Text snippets** — Paste boilerplate, signatures, email addresses with one click
+- **Date/Time** — Auto-insert current date/time with formats like `yyyy-MM-dd`
+- **Folders** — Organize snippets hierarchically (displayed as submenus)
+- **Settings UI** — Drag & drop reordering, move between folders, duplicate items
+- **Clipboard preservation** — Restores original clipboard contents after paste
 
-## 必要環境
+## Requirements
 
-- macOS 13.0 (Ventura) 以降
-- Swift 5.9 以降 / Xcode Command Line Tools
-- アクセシビリティ権限（初回起動時に許可ダイアログが表示されます）
+- macOS 13.0 (Ventura) or later
+- Swift 5.9+ / Xcode Command Line Tools
+- Accessibility permission (prompted on first launch)
 
-## ビルド・インストール
+## Build & Install
 
 ```bash
 git clone <repository-url>
@@ -25,42 +26,42 @@ cd SnipHalo
 ./build.sh
 ```
 
-`SnipHalo.app` が生成されます。`/Applications` に移動して起動してください。
+This generates `SnipHalo.app`. Move it to `/Applications` and launch.
 
-## 使い方
+## Usage
 
-1. 起動するとメニューバーにアイコン（笑顔）が表示されます
-2. `Ctrl+Space` でスニペットメニューが表示されます
-3. 項目をクリックすると、カーソル位置にテキストが貼り付けられます
+1. Launch the app — an icon appears in the menu bar
+2. Press `Ctrl+Space` to open the snippet menu
+3. Click an item to paste it at the cursor position
 
-### ステータスバーアイコン
+### Status Bar Icon
 
-| 操作 | 動作 |
-|------|------|
-| シングルクリック | メニュー表示 |
-| ダブルクリック | 設定UIを開く |
-| 右クリック | メニュー表示 |
+| Action | Result |
+|--------|--------|
+| Single click | Show menu |
+| Double click | Open settings |
+| Right click | Show menu |
 
-### 設定UI
+### Settings UI
 
-メニューから「設定...」またはアイコンをダブルクリックで開きます。
+Open via the menu "Settings..." or double-click the status bar icon.
 
-- **項目の追加** — `+` ボタンからテキスト / 日付・時刻 / フォルダ / 区切り線を追加
-- **項目の複製** — ツールバーの複製ボタン（書類アイコン）
-- **並べ替え** — 右端のドラッグハンドル（≡）でドラッグ&ドロップ
-- **フォルダへ移動** — フォルダ行にドロップするとフォルダ内に移動
-- **フォルダから取り出す** — リスト下部の「ルート」ゾーンにドロップ
-- **ホットキー変更** — 画面下部のホットキー欄をクリックして任意のキーを録音
+- **Add items** — Click `+` to add Text / Date-Time / Folder / Separator
+- **Duplicate** — Toolbar duplicate button (document icon)
+- **Reorder** — Drag the handle (≡) on the right side of each row
+- **Move into folder** — Drop onto a folder row
+- **Move to root** — Drop onto the "Root" zone at the bottom of the list
+- **Change hotkey** — Click the hotkey field at the bottom and press a new key combination
 
-## 設定ファイル
+## Configuration
 
 ```
 ~/Library/Application Support/SnipHalo/config.json
 ```
 
-初回起動時にサンプル設定が自動生成されます。設定UIから編集するほか、JSONを直接編集することもできます（メニューの「Edit Config JSON...」）。
+A default config with sample snippets is auto-generated on first launch. You can edit via the settings UI or directly edit the JSON file (menu "Edit Config JSON...").
 
-### 設定例
+### Example
 
 ```json
 {
@@ -69,28 +70,28 @@ cd SnipHalo
   "items": [
     {
       "type": "folder",
-      "title": "挨拶",
+      "title": "Greetings",
       "items": [
-        { "type": "text", "title": "お疲れ様です", "text": "お疲れ様です。\nいつもお世話になっております。" }
+        { "type": "text", "title": "Thank you", "text": "Thank you for your hard work.\nI appreciate your continued support." }
       ]
     },
-    { "type": "date", "title": "今日の日付", "format": "yyyy-MM-dd" },
+    { "type": "date", "title": "Today", "format": "yyyy-MM-dd" },
     { "type": "separator" },
-    { "type": "text", "title": "メールアドレス", "text": "user@example.com" }
+    { "type": "text", "title": "Email Address", "text": "user@example.com" }
   ]
 }
 ```
 
-### アイテムの種類
+### Item Types
 
-| type | 説明 | 固有フィールド |
-|------|------|----------------|
-| `text` | テキストスニペット | `text` — 貼り付けるテキスト |
-| `date` | 日付・時刻 | `format` — `DateFormatter` フォーマット文字列 |
-| `folder` | フォルダ（サブメニュー） | `items` — 子アイテムの配列 |
-| `separator` | 区切り線 | なし |
+| type | Description | Fields |
+|------|-------------|--------|
+| `text` | Text snippet | `text` — text to paste |
+| `date` | Date/Time | `format` — `DateFormatter` format string |
+| `folder` | Folder (submenu) | `items` — array of child items |
+| `separator` | Separator line | none |
 
-## プロジェクト構成
+## Project Structure
 
 ```
 Sources/SnipHalo/
@@ -100,21 +101,30 @@ Sources/SnipHalo/
 │   ├── Config.swift            # AppConfig, HotkeyConfig
 │   └── MenuItem.swift          # MenuItemConfig, MenuItemType
 ├── UI/
-│   ├── SettingsView.swift      # 設定画面 (SwiftUI)
-│   ├── SettingsViewModel.swift # 設定ロジック
+│   ├── SettingsView.swift      # Settings screen (SwiftUI)
+│   ├── SettingsViewModel.swift # Settings logic
 │   ├── SettingsWindowController.swift
 │   ├── StatusBarController.swift
 │   └── HotkeyRecorderView.swift
 ├── Services/
-│   ├── ConfigManager.swift     # 設定の読み書き
-│   ├── MenuBuilder.swift       # NSMenu 構築
-│   ├── HotkeyManager.swift     # グローバルホットキー (Carbon API)
-│   ├── PasteService.swift      # クリップボード操作・貼り付け
+│   ├── ConfigManager.swift     # Config read/write
+│   ├── MenuBuilder.swift       # NSMenu construction
+│   ├── HotkeyManager.swift     # Global hotkey (Carbon API)
+│   ├── PasteService.swift      # Clipboard & paste simulation
 │   └── AccessibilityHelper.swift
 └── Utilities/
     └── Constants.swift
 ```
 
-## ライセンス
+## Localization
+
+Supports English (default) and Japanese. The UI language follows the system setting. To launch in a specific language:
+
+```bash
+./SnipHalo.app/Contents/MacOS/SnipHalo -AppleLanguages "(en)"
+./SnipHalo.app/Contents/MacOS/SnipHalo -AppleLanguages "(ja)"
+```
+
+## License
 
 MIT
