@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let appMenuItem = NSMenuItem()
         let appMenu = NSMenu()
-        appMenu.addItem(withTitle: "Quit QuickSmiley", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        appMenu.addItem(withTitle: "Quit SnipHalo", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         appMenuItem.submenu = appMenu
         mainMenu.addItem(appMenuItem)
 
@@ -58,7 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         configManager.loadConfig()
         rebuildMenu()
         hotkeyManager.register(config: configManager.config.hotkey)
-        NSLog("QuickSmiley: Config reloaded and menu rebuilt")
+        NSLog("SnipHalo: Config reloaded and menu rebuilt")
     }
 
     @objc func menuItemSelected(_ sender: NSMenuItem) {
@@ -76,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         if !AccessibilityHelper.isTrusted() {
-            NSLog("QuickSmiley: Accessibility permission not granted, cannot paste")
+            NSLog("SnipHalo: Accessibility permission not granted, cannot paste")
             _ = AccessibilityHelper.checkAndPrompt()
             return
         }

@@ -42,6 +42,16 @@ struct MenuItemConfig: Codable, Identifiable {
         self.items = try container.decodeIfPresent([MenuItemConfig].self, forKey: .items)
     }
 
+    func deepCopy() -> MenuItemConfig {
+        MenuItemConfig(
+            type: type,
+            title: title,
+            text: text,
+            format: format,
+            items: items?.map { $0.deepCopy() }
+        )
+    }
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)

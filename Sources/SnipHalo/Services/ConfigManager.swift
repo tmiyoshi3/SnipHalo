@@ -19,7 +19,7 @@ class ConfigManager {
 
         if !fm.fileExists(atPath: Constants.configFileURL.path) {
             fm.createFile(atPath: Constants.configFileURL.path, contents: Constants.defaultConfigJSON.data(using: .utf8))
-            NSLog("QuickSmiley: Created default config at \(Constants.configFileURL.path)")
+            NSLog("SnipHalo: Created default config at \(Constants.configFileURL.path)")
         }
     }
 
@@ -28,10 +28,10 @@ class ConfigManager {
         do {
             let data = try Data(contentsOf: Constants.configFileURL)
             config = try JSONDecoder().decode(AppConfig.self, from: data)
-            NSLog("QuickSmiley: Config loaded (\(config.items.count) top-level items)")
+            NSLog("SnipHalo: Config loaded (\(config.items.count) top-level items)")
             return true
         } catch {
-            NSLog("QuickSmiley: Failed to load config: \(error)")
+            NSLog("SnipHalo: Failed to load config: \(error)")
             return false
         }
     }

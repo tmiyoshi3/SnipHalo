@@ -34,7 +34,7 @@ class HotkeyManager {
         RegisterEventHotKey(keyCode, modifiers, hotKeyID, GetApplicationEventTarget(), 0, &ref)
         hotkeyRef = ref
 
-        NSLog("QuickSmiley: Hotkey registered (key=\(config.key), modifiers=\(config.modifiers))")
+        NSLog("SnipHalo: Hotkey registered (key=\(config.key), modifiers=\(config.modifiers))")
     }
 
     func unregister() {

@@ -69,6 +69,38 @@ class SettingsViewModel: ObservableObject {
         selectedItemId = newItem.id
     }
 
+    func duplicateSelected() {
+        guard let id = selectedItemId, let original = findItem(id: id, in: items) else { return }
+        let copy = original.deepCopy()
+        insertAfter(id: id, item: copy, at: true, in: &items)
+        selectedItemId = copy.id
+    }
+
+    func moveItemAfter(draggedId: UUID, targetId: UUID) {
+        guard draggedId != targetId else { return }
+        guard let draggedItem = findItem(id: draggedId, in: items) else { return }
+        if isDescendant(targetId, of: draggedId) { return }
+        removeItem(id: draggedId, from: &items)
+        insertAfter(id: targetId, item: draggedItem, at: true, in: &items)
+        selectedItemId = draggedId
+    }
+
+    func moveItemIntoFolder(draggedId: UUID, folderId: UUID) {
+        guard draggedId != folderId else { return }
+        guard let draggedItem = findItem(id: draggedId, in: items) else { return }
+        if isDescendant(folderId, of: draggedId) { return }
+        removeItem(id: draggedId, from: &items)
+        appendToFolder(id: folderId, item: draggedItem, in: &items)
+        selectedItemId = draggedId
+    }
+
+    func moveItemToRoot(draggedId: UUID) {
+        guard let draggedItem = findItem(id: draggedId, in: items) else { return }
+        removeItem(id: draggedId, from: &items)
+        items.append(draggedItem)
+        selectedItemId = draggedId
+    }
+
     func deleteSelected() {
         guard let id = selectedItemId else { return }
         removeItem(id: id, from: &items)
@@ -91,7 +123,7 @@ class SettingsViewModel: ObservableObject {
             try ConfigManager.shared.saveConfig(config)
             onSave?()
         } catch {
-            NSLog("QuickSmiley: Failed to save config: \(error)")
+            NSLog("SnipHalo: Failed to save config: \(error)")
         }
     }
 
@@ -161,6 +193,11 @@ class SettingsViewModel: ObservableObject {
                 appendToFolder(id: id, item: item, in: &list[i].items!)
             }
         }
+    }
+
+    private func isDescendant(_ candidateId: UUID, of ancestorId: UUID) -> Bool {
+        guard let ancestor = findItem(id: ancestorId, in: items) else { return false }
+        return findItem(id: candidateId, in: ancestor.items ?? []) != nil
     }
 
     private func moveItem(id: UUID, direction: Int, in list: inout [MenuItemConfig]) {

@@ -31,7 +31,7 @@ class PasteService {
 
         guard let keyDown = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true),
               let keyUp = CGEvent(keyboardEventSource: source, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false) else {
-            NSLog("QuickSmiley: Failed to create CGEvent for paste")
+            NSLog("SnipHalo: Failed to create CGEvent for paste")
             return
         }
 

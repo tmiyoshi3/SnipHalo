@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "QuickSmiley",
+    name: "SnipHalo",
     platforms: [.macOS(.v13)],
     targets: [
         .executableTarget(
-            name: "QuickSmiley",
-            path: "Sources/QuickSmiley"
+            name: "SnipHalo",
+            path: "Sources/SnipHalo"
         )
     ]
 )

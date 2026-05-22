@@ -1,7 +1,7 @@
 import Foundation
 
 enum Constants {
-    static let appName = "QuickSmiley"
+    static let appName = "SnipHalo"
     static let configFileName = "config.json"
 
     static var appSupportDirectory: URL {
